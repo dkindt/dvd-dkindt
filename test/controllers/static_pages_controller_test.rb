@@ -8,10 +8,4 @@ class StaticPagesControllerTest < ActionController::TestCase
   	assert_select "title", "Ruby on Rails DVD App"
   end
 
-  test "should get signup" do
-    get :signup
-    assert_response :success
-    assert_select "title", "Signup | Ruby on Rails DVD App"
-  end
-
 end
