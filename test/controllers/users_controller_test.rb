@@ -2,15 +2,14 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   def setup 
-  	@user = users(:daniel)
-  	@other_user = users(:archer)
+  	@user        = users(:daniel)
+  	@other_user  = users(:archer)
   end
 
   test "should get new" do
     get :new
     assert_response :success
   end
-
 
   test "should redirect index when not logged in" do
     get :index
@@ -57,5 +56,4 @@ class UsersControllerTest < ActionController::TestCase
     end
     assert_redirected_to root_url
   end
-  
 end
