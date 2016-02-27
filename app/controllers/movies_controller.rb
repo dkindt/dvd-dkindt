@@ -20,16 +20,14 @@ class MoviesController < ApplicationController
     @movie = Movie.new
   end
 
-  def get_name
-    name = User.find(params[:rented_by])
-  end
-
   def rent
     #id = params[:id]
     #SELECT.  Find takes movie id and assumes only one. returns movie in question.
     @movie = Movie.find(params[:id])
     user = current_user.id
+    name = current_user.name
     @movie.update_attribute(:rented_by, user)
+    @movie.update_attribute(:user_name, name)
     @movie.update_attribute(:available, false)
     if @movie.save 
       flash[:success] = "Movie successfully rented!"
@@ -46,6 +44,7 @@ class MoviesController < ApplicationController
     #mUser = @movie.read_attribute(:rented_by)
     #lUser = current_user.id
     @movie.update_attribute(:rented_by, nil)
+    @movie.update_attribute(:user_name, nil)
     @movie.update_attribute(:available, true)
     if @movie.save 
       flash[:success] = "Thank you! Your movie was successfully returned!"

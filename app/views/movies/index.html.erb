@@ -5,18 +5,18 @@
   <% @movies.each do |movie| %>
   <div class="col-sm-6 col-md-3">
     <div class="thumbnail">
-      <%= image_tag movie.poster %>
+      <%= link_to(image_tag(movie.poster), movie) %>
       <div class="caption">
         <h4><%= movie.title %> (<%= movie.release_year %>)</h4>
         <% if (movie.available) == true %>
-            <p>
-              <%= link_to "Rent", movie, class: "btn btn-primary btn-block" %>
-            </p>
-        <% else %>
             <p></p>
-            <p>
-              <%= link_to "Return", movie, class: "btn btn-warning btn-block" %>
-            </p>
+              <%= link_to("Rent", rent_movie_path(movie), :class => "btn btn-primary btn-block") %>
+        <% else %>
+            <% if (movie.rented_by == current_user.id) %>
+              <%= link_to("Return", return_movie_path(movie), :class => "btn btn-warning btn-block") %>
+            <% else %>
+              <%= link_to("Checked-out", '#', :class => "btn btn-warning btn-block disabled") %>
+            <% end %>
         <% end %>
       </div>
     </div>

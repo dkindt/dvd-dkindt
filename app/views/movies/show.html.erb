@@ -13,12 +13,14 @@
   </h3>
   <div>
   <% if (@movie.available == true) %>
-    <p>Available for rent</p>
-    <%= link_to("Rent", rent_movie_path(@movie), :class => "btn btn-success btn-lg", :method => :post) %>
+    <p>Available to rent</p>
+    <%= link_to("Rent", rent_movie_path(@movie), :class => "btn btn-success btn-md", :method => :post) %>
   <% else %>
-    <p>Checked out by User: <%= @movie.rented_by %></p>
+    <p>Checked out by User: <%= @movie.user_name %></p>
     <% if (@movie.rented_by == current_user.id) %>
-    <%= link_to("Return", return_movie_path(@movie), :class => "btn btn-warning btn-lg", :method => :post) %>
+      <%= link_to("Return", return_movie_path(@movie), :class => "btn btn-warning btn-md", :method => :post) %>
+    <% else %>
+      <%= link_to("Checked-out", return_movie_path(@movie), :class => "btn btn-warning btn-md disabled", :method => :post) %>
     <% end %>
   <% end %>
 </div>
