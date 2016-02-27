@@ -72,6 +72,19 @@ p {
 
 /* header */
 
+.navbar-inverse {
+  background-color: #005493;
+  border-color: #090909;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+    &:hover {
+      color: white;
+      text-decoration: none;
+    }
+}
+
 #logo {
   float: left;
   margin-right: 10px;
@@ -82,7 +95,7 @@ p {
   padding-top: 9px;
   font-weight: bold;
   &:hover {
-    color: white;
+    background: transparent;
     text-decoration: none;
   }
 }
@@ -94,6 +107,7 @@ footer {
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
   color: $gray-light;
+  background-color: rgba(0, 104, 183, 1.0);
   a {
     color: $gray;
     &:hover {

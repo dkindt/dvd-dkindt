@@ -9,9 +9,8 @@
       <div class="caption">
         <h4><%= movie.title %> (<%= movie.release_year %>)</h4>
         <% if (movie.available) == true %>
-            <br>
             <p>
-              <%= link_to "Rent", movie, class: "btn btn-success btn-block" %>
+              <%= link_to "Rent", movie, class: "btn btn-primary btn-block" %>
             </p>
         <% else %>
             <p></p>

@@ -20,6 +20,10 @@ class MoviesController < ApplicationController
     @movie = Movie.new
   end
 
+  def get_name
+    name = User.find(params[:rented_by])
+  end
+
   def rent
     #id = params[:id]
     #SELECT.  Find takes movie id and assumes only one. returns movie in question.

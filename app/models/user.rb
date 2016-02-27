@@ -42,7 +42,6 @@ class User < ActiveRecord::Base
     	update_attribute(:remember_digest, nil)
   	end
 
-
       # Activates an account.
     def activate
       update_attribute(:activated,    true)
