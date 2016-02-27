@@ -1,0 +1,23 @@
+<div class="row">
+<div class="col-sm-12 col-lg-3">
+  <%=image_tag @movie.poster %>
+</div>
+
+<div class="col-sm-12 col-lg-9">
+  <h3>
+    <%= @movie.title %>
+    (<%= @movie.release_year %>)
+        <%=link_to @movie.imdb do%>
+    <%=image_tag ("http://ia.media-imdb.com/images/G/01/imdb/images/plugins/imdb_46x22-2264473254._CB306318085_.png") %>
+  <%end%>
+  </h3>
+  <% if (@movie.available == true) %>
+    <p>Available for rent</p>
+    <p>Movie Id: <%= @movie.id %></p>
+  <% else %>
+    <p>Checked out by User: <%= @movie.rented_by %></p>
+    
+  <% end %>
+
+</div>
+</div>
