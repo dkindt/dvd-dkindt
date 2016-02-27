@@ -13,6 +13,15 @@ class MoviesController < ApplicationController
   # GET /movies/1.json
   def show
     @movie = Movie.find(params[:id])
+    if @movie.rented_by.nil?
+    else
+      @myuser = User.find(@movie.rented_by)
+      if @myuser.nil?
+        @rented_by = nil
+      else
+        @rented_by = @myuser.name
+      end
+    end
   end
 
   # GET /movies/new
@@ -25,9 +34,7 @@ class MoviesController < ApplicationController
     #SELECT.  Find takes movie id and assumes only one. returns movie in question.
     @movie = Movie.find(params[:id])
     user = current_user.id
-    name = current_user.name
     @movie.update_attribute(:rented_by, user)
-    @movie.update_attribute(:user_name, name)
     @movie.update_attribute(:available, false)
     if @movie.save 
       flash[:success] = "Movie successfully rented!"
@@ -44,7 +51,6 @@ class MoviesController < ApplicationController
     #mUser = @movie.read_attribute(:rented_by)
     #lUser = current_user.id
     @movie.update_attribute(:rented_by, nil)
-    @movie.update_attribute(:user_name, nil)
     @movie.update_attribute(:available, true)
     if @movie.save 
       flash[:success] = "Thank you! Your movie was successfully returned!"
